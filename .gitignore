@@ -1,0 +1,9 @@
+/.devenv/
+/.direnv/
+/.pre-commit-config.yaml
+/result
+/result-*
+
+.terraform/
+.terraform.lock.hcl
+!/.terraform.lock.hcl

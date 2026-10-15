@@ -1,0 +1,55 @@
+---
+name: CI
+
+# yamllint disable-line rule:truthy
+on:
+  pull_request:
+    branches: [master]
+  merge_group:
+    types: [checks_requested]
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  start:
+    name: Start
+    runs-on: ubuntu-24.04
+    outputs:
+      start: ${{ steps.merge-queue-ci-skipper.outputs.skip-check == 'false' }}
+    steps:
+      - name: Check If Starting
+        id: merge-queue-ci-skipper
+        uses: cariad-tech/merge-queue-ci-skipper@main
+
+  flake:
+    name: Check Flake
+    runs-on: ubuntu-24.04
+    needs: [start]
+    if: needs.start.outputs.start == 'true'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Nix
+        uses: ./.github/actions/setup-nix
+
+      - name: Check
+        run: nix develop .# --impure --command devenv test
+
+  succeed:
+    name: Succeed
+    runs-on: ubuntu-24.04
+    needs:
+      - flake
+    if: always()
+    steps:
+      - name: Fail If Not Succeeding
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: exit 1
