@@ -52,3 +52,15 @@ variable "deploy_key" {
 variable "op_vault" {
   type = string
 }
+
+variable "pages" {
+  type        = bool
+  description = "Whether to enable the Pages feature"
+  default     = false
+}
+
+variable "pages_cname" {
+  type        = string
+  description = "The custom domain to use for Pages"
+  default     = null
+}

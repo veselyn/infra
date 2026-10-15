@@ -22,6 +22,12 @@ resource "github_repository" "this" {
   squash_merge_commit_message = "BLANK"
 
   has_issues = var.has_issues
+
+  lifecycle {
+    ignore_changes = [
+      pages,
+    ]
+  }
 }
 
 resource "github_branch_default" "this" {
@@ -111,4 +117,13 @@ resource "github_repository_deploy_key" "this" {
   repository = var.name
   key        = tls_private_key.deploy_key[count.index].public_key_openssh
   read_only  = false
+}
+
+resource "github_repository_pages" "this" {
+  count          = var.pages ? 1 : 0
+  repository     = github_repository.this.name
+  build_type     = "workflow"
+  cname          = var.pages_cname
+  public         = true
+  https_enforced = var.pages_cname != null ? true : null
 }

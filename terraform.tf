@@ -9,7 +9,7 @@ terraform {
 
     github = {
       source  = "integrations/github"
-      version = "6.9.0"
+      version = "6.13.0"
     }
 
     onepassword = {

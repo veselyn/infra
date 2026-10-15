@@ -7,10 +7,11 @@ module "github_repository" {
   source = "./modules/github-repository"
 
   for_each = {
-    dotfiles       = { description = "My Nix configuration" }
-    infra          = {}
-    issues         = { has_issues = true }
-    issues-private = { has_issues = true, visibility = "private" }
+    "veselyn.github.io" = { pages = true, pages_cname = "veselyn.com" }
+    dotfiles            = { description = "My Nix configuration" }
+    infra               = {}
+    issues              = { has_issues = true }
+    issues-private      = { has_issues = true, visibility = "private" }
   }
 
   name           = each.key
@@ -19,8 +20,10 @@ module "github_repository" {
   archived       = try(each.value.archived, false)
   default_branch = local.default_branch
   has_issues     = try(each.value.has_issues, false)
-  ruleset        = try(each.value.ruleset, false)
+  ruleset        = false
   environments   = try(each.value.environments, [])
   deploy_key     = try(each.value.deploy_key, false)
   op_vault       = var.op_vault
+  pages          = try(each.value.pages, false)
+  pages_cname    = try(each.value.pages_cname, null)
 }
