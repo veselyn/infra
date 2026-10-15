@@ -7,6 +7,7 @@ module "github_repository" {
   source = "./modules/github-repository"
 
   for_each = {
+    infra          = {}
     issues         = { has_issues = true }
     issues-private = { has_issues = true, visibility = "private" }
   }
