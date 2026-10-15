@@ -31,6 +31,12 @@ variable "has_issues" {
   default     = false
 }
 
+variable "ruleset" {
+  type        = bool
+  description = "Whether to create a ruleset for the repository"
+  default     = true
+}
+
 variable "environments" {
   type        = set(string)
   description = "Environments for which to require reviews"

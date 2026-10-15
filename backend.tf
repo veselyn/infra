@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket                      = "veselabs-terraform-state"
-    key                         = "org/terraform.tfstate"
+    bucket                      = "veselyn-terraform-state"
+    key                         = "infra/terraform.tfstate"
     region                      = "auto"
     skip_credentials_validation = true
     skip_metadata_api_check     = true

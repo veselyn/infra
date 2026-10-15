@@ -31,7 +31,7 @@ resource "github_branch_default" "this" {
 }
 
 resource "github_repository_ruleset" "this" {
-  count = var.visibility == "public" ? 1 : 0
+  count = var.ruleset && var.visibility == "public" ? 1 : 0
 
   name        = github_branch_default.this.branch
   repository  = github_repository.this.name

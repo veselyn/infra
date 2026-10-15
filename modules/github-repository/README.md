@@ -46,6 +46,7 @@ No modules.
 | <a name="input_has_issues"></a> [has\_issues](#input\_has\_issues) | Whether to enable the Issues feature | `bool` | `false` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the repository | `string` | n/a | yes |
 | <a name="input_op_vault"></a> [op\_vault](#input\_op\_vault) | n/a | `string` | n/a | yes |
+| <a name="input_ruleset"></a> [ruleset](#input\_ruleset) | Whether to create a ruleset for the repository | `bool` | `true` | no |
 | <a name="input_visibility"></a> [visibility](#input\_visibility) | Visibility of the repository | `string` | `"public"` | no |
 
 ## Outputs

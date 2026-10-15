@@ -1,6 +1,5 @@
 provider "github" {
-  owner = "veselabs"
-  app_auth {}
+  owner = "veselyn"
 }
 
 provider "onepassword" {

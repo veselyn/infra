@@ -1,5 +1,5 @@
 {
-  description = "org-infra";
+  description = "infra";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
@@ -26,16 +26,13 @@
           modules = [
             {
               env = {
-                CLOUDFLARE_ACCESS_KEY_ID = "op://veselabs/cloudflare api token/access_key_id";
-                CLOUDFLARE_ACCOUNT_ID = "op://veselabs/cloudflare api token/account_id";
-                CLOUDFLARE_SECRET_ACCESS_KEY = "op://veselabs/cloudflare api token/secret_access_key";
-                GITHUB_APP_ID = "op://veselabs/github app organization/id";
-                GITHUB_APP_INSTALLATION_ID = "op://veselabs/github app organization/installation_id";
-                GITHUB_APP_PEM_FILE = "op://veselabs/github app private key/private key";
-                TAILSCALE_OAUTH_CLIENT_ID = "op://veselabs/tailscale oauth credentials/username";
-                TAILSCALE_OAUTH_CLIENT_SECRET = "op://veselabs/tailscale oauth credentials/credential";
-                TF_VAR_op_service_account_token = "op://veselabs/service account auth token/credential";
-                TF_VAR_op_vault = "op://veselabs/service account auth token/username";
+                CLOUDFLARE_ACCESS_KEY_ID = "op://veselyn/cloudflare api token/access_key_id";
+                CLOUDFLARE_ACCOUNT_ID = "op://veselyn/cloudflare api token/account_id";
+                CLOUDFLARE_API_TOKEN = "op://veselyn/cloudflare api token/credential";
+                CLOUDFLARE_SECRET_ACCESS_KEY = "op://veselyn/cloudflare api token/secret_access_key";
+                TF_VAR_cloudflare_account_id = "op://veselyn/cloudflare api token/account_id";
+                TF_VAR_op_service_account_token = "op://veselyn/service account auth token/credential";
+                TF_VAR_op_vault = "op://veselyn/service account auth token/username";
               };
 
               languages = {
